@@ -50,6 +50,11 @@ pipeline{
                 }
             }
         }
+        stage('provision server') {
+            steps {
+                
+            }
+        }
         stage('deploy'){
             steps{
                 script{

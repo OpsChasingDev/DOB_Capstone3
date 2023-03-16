@@ -7,3 +7,5 @@ In this project, we start with an existing CI/CD pipeline which builds an app, c
 
 1. Install SSH-Agent plugin
 2. Add username-key credential type to allow Jenkins to authenticate against AWS with SSH
+3. Create SSH key-pair which Jenkins will need for connecting against ec2
+4. Install terraform on Jenkins container
