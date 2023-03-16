@@ -5,7 +5,7 @@
 version: '3.8'
 services:
   java-maven-app:
-    image: {{ image_name }} # adjust {{ image_name }} also ref in Jenkinsfile
+    image: ${IMAGE} # value passed from server-cmds.sh
     ports:
       - "8080:8080"
   postgres:
