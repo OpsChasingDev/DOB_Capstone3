@@ -8,3 +8,9 @@ services:
     image: {{ image_name }} # adjust {{ image_name }} also ref in Jenkinsfile
     ports:
       - "8080:8080"
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
