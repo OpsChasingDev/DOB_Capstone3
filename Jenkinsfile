@@ -10,6 +10,7 @@ library identifier: 'DOB_Jenkins-Shared-Library@main', retriever: modernSCM(
 )
 
 // the below would be used instead if the shared library is globally accessible in Jenkins server
+// note the "_" at the end of the below line is necessary only if you do not have a "def gv" in between the library call and the rest of the pipeline syntax
 // @Library('jenkins-shared-library')_
 
 pipeline{
