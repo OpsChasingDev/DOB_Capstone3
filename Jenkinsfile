@@ -1,6 +1,16 @@
 #!/usr/bin/env groovy
 
-@Library('jenkins-shared-library')_
+// the below is the syntax to reference a shared library in Jenkins server scoped only to the project
+library identifier: 'DOB_Jenkins-Shared-Library@main', retriever: modernSCM(
+    [
+        $class: 'GitSCMSource',
+        remote: 'https://github.com/OpsChasingDev/DOB_Jenkins-Shared-Library.git',
+        credentialsId: 'GitHub_PAT'
+    ]
+)
+
+// the below would be used instead if the shared library is globally accessible in Jenkins server
+// @Library('jenkins-shared-library')_
 
 pipeline{
     agent any
