@@ -13,7 +13,7 @@ pipeline{
         maven 'Maven'
     }
     environment {
-        IMAGE_NAME = {{ image_name }} // adjust {{ image_name }}
+        IMAGE_NAME = 'opschasingdev/dockerhub:{{ tag }}' // adjust {{ image_name }}
     }
     stages{
         stage('build app'){
