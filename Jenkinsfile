@@ -12,9 +12,6 @@ pipeline{
     tools {
         maven 'Maven'
     }
-    environment {
-        IMAGE_NAME = 'opschasingdev/dockerhub:maven-app-2.0' // adjust image name
-    }
     stages{
         stage("increment version") {
             steps {
