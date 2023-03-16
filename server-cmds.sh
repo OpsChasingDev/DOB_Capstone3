@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-export IMAGE = $1
+export IMAGE=$1
 docker-compose -f docker-compose.yaml up --detach
 echo "success running docker-compose"

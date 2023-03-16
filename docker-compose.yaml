@@ -5,7 +5,7 @@
 version: '3.8'
 services:
   java-maven-app:
-    image: "opschasingdev/dockerhub:${TAG}" # value passed from server-cmds.sh
+    image: ${IMAGE} # value passed from server-cmds.sh
     ports:
       - "8080:8080"
   postgres:
