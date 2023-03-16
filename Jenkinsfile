@@ -34,6 +34,7 @@ pipeline{
                 script{
                     echo "building docker image..."
                     buildImage(env.IMAGE_NAME)
+                    // add dockerLogin function to jenkins-shared-library
                     dockerLogin()
                     dockerPush(env.IMAGE_NAME)
                 }
