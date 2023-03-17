@@ -74,6 +74,9 @@ pipeline{
             }
         }
         stage('deploy'){
+            environment {
+                DOCKER_CREDS = credentials('Dockerhub')
+            }
             steps{
                 script{
                     // waits before moving on to ec2 has time to provision before attempting app deployment
@@ -83,7 +86,8 @@ pipeline{
                     echo "deploying docker image to ec2..."
                     echo "EC2_PUBLIC_IP: ${EC2_PUBLIC_IP}"
 
-                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
+                    // the creds env vars come out of the box because of our environment call in this stage to get our Dockerhub creds
+                    def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME} ${DOCKER_CREDS}_USR ${DOCKER_CREDS}_PASS}"
                     // access output from Terraform script saved during provisioning stage
                     def ec2Instance = "ec2-user@${EC2_PUBLIC_IP}"
 
