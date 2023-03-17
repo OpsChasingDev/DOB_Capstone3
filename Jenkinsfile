@@ -66,7 +66,7 @@ pipeline{
                         sh 'terraform apply --auto-approve'
                         // the below is responsible for saving the output from the Terraform script to a variable that Jenkins can ref
                         EC2_PUBLIC_IP sh(
-                            script: 'terraform output ec2_public_ip'
+                            script: 'terraform output ec2_public_ip',
                             returnStdout: true
                         ).trim()
                     }
