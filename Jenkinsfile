@@ -64,6 +64,11 @@ pipeline{
                         echo 'provisioning ec2 instance...'
                         sh 'terraform init'
                         sh 'terraform apply --auto-approve'
+                        // the below is responsible for saving the output from the Terraform script to a variable that Jenkins can ref
+                        EC2_PUBLIC_IP sh(
+                            script: 'terraform output ec2_public_ip'
+                            returnStdout: true
+                        ).trim()
                     }
                 }
             }
@@ -74,7 +79,8 @@ pipeline{
                     echo "deploying docker image to ec2..."
 
                     def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
-                    def ec2Instance = "ec2-user@{{ ec2_ip }}" // adjust {{ ec2_ip }}
+                    // access output from Terraform script saved during provisioning stage
+                    def ec2Instance = "ec2-user@${EC2_PUBLIC_IP}"
 
                     sshagent(['EC2-Server-Key']) {
                         sh "scp server-cmds.sh ${ec2Instance}:/home/ec2-user"
