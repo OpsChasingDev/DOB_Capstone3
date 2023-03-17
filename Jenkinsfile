@@ -55,6 +55,8 @@ pipeline{
             environment {
                 AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
                 AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+                // this env var allows Jenkins to pass a value to Terraform for the var we defined in terraform script called "env_prefix"
+                TF_VAR_env_prefix = 'test'
             }
             steps {
                 script {
