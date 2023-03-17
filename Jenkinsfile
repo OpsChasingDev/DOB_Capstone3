@@ -76,7 +76,12 @@ pipeline{
         stage('deploy'){
             steps{
                 script{
+                    // waits before moving on to ec2 has time to provision before attempting app deployment
+                    echo "waiting for ec2 to provision..."
+                    sleep(time: 90, until: "SECONDS")
+
                     echo "deploying docker image to ec2..."
+                    echo "EC2_PUBLIC_IP: ${EC2_PUBLIC_IP}"
 
                     def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
                     // access output from Terraform script saved during provisioning stage
