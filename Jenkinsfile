@@ -52,7 +52,13 @@ pipeline{
         }
         stage('provision server') {
             steps {
-                
+                script {
+                    dir ('terraform') {
+                        echo 'provisioning ec2 instance...'
+                        sh 'terraform init'
+                        sh 'terraform apply --auto-approve'
+                    }
+                }
             }
         }
         stage('deploy'){
